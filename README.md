@@ -1,6 +1,7 @@
 # Laravel Middleware Starter
 
-ミドルウェアハンズオン（10-2-4）用のスターターキットです。
+COACHTECH 教材 Tutorial 10-2「ミドルウェア ハンズオン演習」で作成した成果物です。
+カスタムミドルウェアを使って、管理者のみアクセスできる「管理者専用ページ」を保護しました。
 
 ## 含まれているもの
 
@@ -12,6 +13,13 @@
   - 一般: user@example.com / password
 - AdminController
 - 管理者ページ（/admin）
+
+## 使用技術
+- PHP 8.x
+- Laravel 10.x
+- カスタムミドルウェア
+- Laravel Fortify（認証）
+- Laravel Sail（Docker Compose）
 
 ## セットアップ
 
@@ -50,18 +58,12 @@ cp .env.example .env
 4. ログアウトして user@example.com / password でログイン
 5. 「管理者ページにアクセス」をクリック → 表示される（ミドルウェア未実装のため）
 
-## 演習課題
-
-カスタムミドルウェアを作成して、管理者のみが /admin にアクセスできるようにしてください。
-
-## 実装タスク
-
-1. CheckAdminミドルウェアを作成
-2. handleメソッドに管理者チェックロジックを実装
-3. Kernel.phpにミドルウェアを登録
-4. /adminルートにミドルウェアを適用
-
 ## 完成後の動作
 
 - admin@example.com でログイン → /admin アクセス → ✅ 表示される
 - user@example.com でログイン → /admin アクセス → ❌ 403エラー
+
+## 学んだこと
+- ミドルウェアが Request と Response の間で処理を介在させる仕組み
+- sail artisan make:middleware でのミドルウェア作成と Kernel.php での登録
+- ルートへのミドルウェア適用方法（->middleware('check_admin')）
